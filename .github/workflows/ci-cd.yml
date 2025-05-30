@@ -193,8 +193,8 @@ jobs:
     - name: Run Lighthouse audit
       run: |
         # Note: Replace with actual GitHub Pages URL after first deployment
-        # lighthouse https://your-username.github.io/perplexity_english_app --output=html --output-path=lighthouse-report.html --chrome-flags="--headless --no-sandbox" || true
-        echo "Lighthouse audit step ready - update with actual URL after first deployment"
+        lighthouse https://leonardobora.github.io/perplexity-english-app --output=html --output-path=lighthouse-report.html --chrome-flags="--headless --no-sandbox" || true
+        echo "Lighthouse audit completed for leonardobora.github.io/perplexity-english-app"
     
     - name: Upload Lighthouse report
       if: always()
