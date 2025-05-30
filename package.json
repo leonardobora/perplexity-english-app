@@ -38,11 +38,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/perplexity_english_app.git"
+    "url": "https://github.com/leonardobora/perplexity-english-app.git"
   },
-  "homepage": "https://your-username.github.io/perplexity_english_app/",
+  "homepage": "https://leonardobora.github.io/perplexity-english-app/",
   "bugs": {
-    "url": "https://github.com/your-username/perplexity_english_app/issues"
+    "url": "https://github.com/leonardobora/perplexity-english-app/issues"
   },
   "engines": {
     "node": ">=16.0.0"

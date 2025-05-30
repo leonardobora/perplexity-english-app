@@ -1,13 +1,13 @@
 # EduDash - English Learning Dashboard
 
-[![CI/CD Pipeline](https://github.com/your-username/perplexity_english_app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-username/perplexity_english_app/actions/workflows/ci-cd.yml)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://your-username.github.io/perplexity_english_app/)
+[![CI/CD Pipeline](https://github.com/leonardobora/perplexity-english-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/leonardobora/perplexity-english-app/actions/workflows/ci-cd.yml)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://leonardobora.github.io/perplexity-english-app/)
 
 An interactive educational dashboard for English language learning, specifically designed for Brazilian high school students preparing for college entrance exams (ENEM and UFPR). The application combines gamification elements with AI-powered study assistance.
 
 ## 🚀 Live Demo
 
-Visit the live application: [https://your-username.github.io/perplexity_english_app/](https://your-username.github.io/perplexity_english_app/)
+Visit the live application: [https://leonardobora.github.io/perplexity-english-app/](https://leonardobora.github.io/perplexity-english-app/)
 
 ## 📋 Features
 
@@ -53,8 +53,8 @@ Visit the live application: [https://your-username.github.io/perplexity_english_
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/perplexity_english_app.git
-   cd perplexity_english_app
+   git clone https://github.com/leonardobora/perplexity-english-app.git
+   cd perplexity-english-app
    ```
 
 2. **Install development dependencies**
@@ -205,9 +205,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- Create an [issue](https://github.com/your-username/perplexity_english_app/issues) for bug reports
-- Start a [discussion](https://github.com/your-username/perplexity_english_app/discussions) for questions
-- Check [GitHub Pages](https://your-username.github.io/perplexity_english_app/) for live demo
+- Create an [issue](https://github.com/leonardobora/perplexity-english-app/issues) for bug reports
+- Start a [discussion](https://github.com/leonardobora/perplexity-english-app/discussions) for questions
+- Check [GitHub Pages](https://leonardobora.github.io/perplexity-english-app/) for live demo
 
 ---
 
