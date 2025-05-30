@@ -64,7 +64,7 @@ jobs:
       run: |
         # Check if CSS custom properties are defined
         grep -q ":root" style.css && echo "CSS custom properties found ✓"
-        grep -q "--color-" style.css && echo "Color variables found ✓"
+        grep -q "\--color-" style.css && echo "Color variables found ✓"
     
     - name: Test JavaScript syntax
       run: |
