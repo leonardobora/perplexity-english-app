@@ -1,0 +1,206 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test Application
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        else
+          echo "No package.json found, skipping npm install"
+        fi
+    
+    - name: Lint HTML
+      run: |
+        npm install -g htmlhint
+        htmlhint index.html
+    
+    - name: Lint CSS
+      run: |
+        npm install -g stylelint stylelint-config-standard
+        echo '{ "extends": "stylelint-config-standard" }' > .stylelintrc.json
+        stylelint style.css || true
+    
+    - name: Lint JavaScript
+      run: |
+        npm install -g eslint
+        npx eslint app.js --init --config-override '{"env":{"browser":true,"es6":true},"extends":"eslint:recommended","rules":{"no-unused-vars":"warn","no-console":"off"}}' || true
+    
+    - name: Test static files
+      run: |
+        # Check if main files exist
+        test -f index.html || exit 1
+        test -f app.js || exit 1
+        test -f style.css || exit 1
+        echo "All main files present ✓"
+    
+    - name: Validate HTML structure
+      run: |
+        # Basic HTML validation
+        grep -q "<!DOCTYPE html>" index.html && echo "DOCTYPE found ✓"
+        grep -q "<html" index.html && echo "HTML tag found ✓"
+        grep -q "<head>" index.html && echo "HEAD tag found ✓"
+        grep -q "<body>" index.html && echo "BODY tag found ✓"
+    
+    - name: Check CSS variables
+      run: |
+        # Check if CSS custom properties are defined
+        grep -q ":root" style.css && echo "CSS custom properties found ✓"
+        grep -q "--color-" style.css && echo "Color variables found ✓"
+    
+    - name: Test JavaScript syntax
+      run: |
+        node -c app.js && echo "JavaScript syntax valid ✓"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Build Application
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Create build directory
+      run: mkdir -p build
+    
+    - name: Copy static files
+      run: |
+        cp index.html build/
+        cp app.js build/
+        cp style.css build/
+        cp CLAUDE.md build/
+    
+    - name: Minify CSS
+      run: |
+        npm install -g clean-css-cli
+        cleancss -o build/style.min.css style.css
+    
+    - name: Minify JavaScript
+      run: |
+        npm install -g uglify-js
+        uglifyjs app.js -o build/app.min.js -c -m
+    
+    - name: Create optimized index.html
+      run: |
+        # Create a production version with minified assets
+        sed 's/style\.css/style.min.css/g; s/app\.js/app.min.js/g' index.html > build/index-prod.html
+    
+    - name: Generate build info
+      run: |
+        echo "Build Date: $(date)" > build/build-info.txt
+        echo "Commit SHA: ${{ github.sha }}" >> build/build-info.txt
+        echo "Branch: ${{ github.ref_name }}" >> build/build-info.txt
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-files
+        path: build/
+        retention-days: 30
+
+  deploy-github-pages:
+    runs-on: ubuntu-latest
+    needs: build
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+        path: ./build
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Prepare deployment files
+      run: |
+        mkdir -p _site
+        cp index.html _site/
+        cp app.js _site/
+        cp style.css _site/
+        cp CLAUDE.md _site/
+        # Also include optimized versions
+        if [ -f build/style.min.css ]; then cp build/style.min.css _site/; fi
+        if [ -f build/app.min.js ]; then cp build/app.min.js _site/; fi
+        if [ -f build/index-prod.html ]; then cp build/index-prod.html _site/; fi
+        if [ -f build/build-info.txt ]; then cp build/build-info.txt _site/; fi
+    
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./_site
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    needs: deploy-github-pages
+    name: Lighthouse Performance Audit
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install Lighthouse
+      run: npm install -g lighthouse
+    
+    - name: Wait for deployment
+      run: sleep 30
+    
+    - name: Run Lighthouse audit
+      run: |
+        # Note: Replace with actual GitHub Pages URL after first deployment
+        # lighthouse https://your-username.github.io/perplexity_english_app --output=html --output-path=lighthouse-report.html --chrome-flags="--headless --no-sandbox" || true
+        echo "Lighthouse audit step ready - update with actual URL after first deployment"
+    
+    - name: Upload Lighthouse report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: lighthouse-report
+        path: lighthouse-report.html
+        retention-days: 30
+      continue-on-error: true

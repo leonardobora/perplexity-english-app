@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDash - Dashboard Educacional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Tela de Login -->
+        <div id="login-screen" class="screen active">
+            <div class="login-container">
+                <div class="login-header">
+                    <h1>📚 EduDash</h1>
+                    <p>Sistema de Acompanhamento Educacional</p>
+                </div>
+                <div class="login-cards">
+                    <div class="login-card" data-role="professor">
+                        <div class="login-card-icon">👩‍🏫</div>
+                        <h3>Professor</h3>
+                        <p>Gerencie turmas e acompanhe o progresso dos alunos</p>
+                        <button class="btn btn--primary">Entrar como Professor</button>
+                    </div>
+                    <div class="login-card" data-role="aluno">
+                        <div class="login-card-icon">🎓</div>
+                        <h3>Aluno</h3>
+                        <p>Acesse suas lições e acompanhe seu progresso</p>
+                        <button class="btn btn--primary">Entrar como Aluno</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Professor -->
+        <div id="professor-dashboard" class="screen">
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <h2>📚 EduDash</h2>
+                    <div class="user-info">
+                        <span class="status status--success">Prof. Ana Silva</span>
+                    </div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" data-section="overview" class="active">📊 Visão Geral</a></li>
+                    <li><a href="#" data-section="turmas">👥 Turmas</a></li>
+                    <li><a href="#" data-section="licoes">📝 Lições</a></li>
+                    <li><a href="#" data-section="alunos">🎓 Alunos</a></li>
+                    <li><a href="#" data-section="assistente">🤖 Assistente IA</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <button class="btn btn--outline btn--sm" id="logout-btn">🚪 Sair</button>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <!-- Overview Professor -->
+                <div id="overview-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Dashboard do Professor</h1>
+                        <p>Bem-vinda, Prof. Ana Silva! Aqui está o resumo de suas turmas.</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">49</div>
+                            <div class="stat-label">Total de Alunos</div>
+                            <div class="stat-trend">📈 +5 este mês</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">73%</div>
+                            <div class="stat-label">Progresso Médio</div>
+                            <div class="stat-trend">📊 +8% este mês</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Lições Ativas</div>
+                            <div class="stat-trend">✅ 4 concluídas hoje</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Turmas</div>
+                            <div class="stat-trend">🎯 ENEM & UFPR</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>📈 Progresso das Turmas</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="progress-list">
+                                    <div class="progress-item">
+                                        <span class="progress-label">3A</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 85%"></div>
+                                        </div>
+                                        <span class="progress-value">85%</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="progress-label">3B</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 72%"></div>
+                                        </div>
+                                        <span class="progress-value">72%</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="progress-label">3C</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 64%"></div>
+                                        </div>
+                                        <span class="progress-value">64%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>🏆 Top Alunos</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="ranking-list">
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">1º</span>
+                                        <span class="ranking-name">Pedro Costa</span>
+                                        <span class="ranking-points">1450 pts</span>
+                                    </div>
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">2º</span>
+                                        <span class="ranking-name">João Santos</span>
+                                        <span class="ranking-points">1240 pts</span>
+                                    </div>
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">3º</span>
+                                        <span class="ranking-name">Maria Oliveira</span>
+                                        <span class="ranking-points">980 pts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Turmas -->
+                <div id="turmas-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Gerenciar Turmas</h1>
+                        <button class="btn btn--primary">➕ Nova Turma</button>
+                    </div>
+                    
+                    <div class="turmas-grid">
+                        <div class="card turma-card">
+                            <div class="card__body">
+                                <h3>Turma 3A</h3>
+                                <div class="turma-stats">
+                                    <span>👥 15 alunos</span>
+                                    <span>📊 85% progresso</span>
+                                    <span>🎯 ENEM Focus</span>
+                                </div>
+                                <div class="turma-actions">
+                                    <button class="btn btn--secondary btn--sm">Detalhes</button>
+                                    <button class="btn btn--outline btn--sm">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card turma-card">
+                            <div class="card__body">
+                                <h3>Turma 3B</h3>
+                                <div class="turma-stats">
+                                    <span>👥 18 alunos</span>
+                                    <span>📊 72% progresso</span>
+                                    <span>🎯 UFPR Focus</span>
+                                </div>
+                                <div class="turma-actions">
+                                    <button class="btn btn--secondary btn--sm">Detalhes</button>
+                                    <button class="btn btn--outline btn--sm">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card turma-card">
+                            <div class="card__body">
+                                <h3>Turma 3C</h3>
+                                <div class="turma-stats">
+                                    <span>👥 16 alunos</span>
+                                    <span>📊 64% progresso</span>
+                                    <span>🎯 Ambos</span>
+                                </div>
+                                <div class="turma-actions">
+                                    <button class="btn btn--secondary btn--sm">Detalhes</button>
+                                    <button class="btn btn--outline btn--sm">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Lições -->
+                <div id="licoes-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Gerenciar Lições</h1>
+                        <button class="btn btn--primary" id="nova-licao-btn">➕ Nova Lição</button>
+                    </div>
+                    
+                    <div class="licoes-list">
+                        <div class="card licao-card">
+                            <div class="card__body">
+                                <div class="licao-info">
+                                    <h3>Present Perfect - Formation</h3>
+                                    <div class="licao-tags">
+                                        <span class="status status--info">Grammar</span>
+                                        <span class="status status--success">ENEM</span>
+                                    </div>
+                                    <p>⏱️ 20 min • 🏆 15 pontos</p>
+                                </div>
+                                <div class="licao-actions">
+                                    <button class="btn btn--secondary btn--sm">✏️ Editar</button>
+                                    <button class="btn btn--outline btn--sm">🗑️ Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card licao-card">
+                            <div class="card__body">
+                                <div class="licao-info">
+                                    <h3>Environmental Issues</h3>
+                                    <div class="licao-tags">
+                                        <span class="status status--warning">Vocabulary</span>
+                                        <span class="status status--info">Ambos</span>
+                                    </div>
+                                    <p>⏱️ 15 min • 🏆 10 pontos</p>
+                                </div>
+                                <div class="licao-actions">
+                                    <button class="btn btn--secondary btn--sm">✏️ Editar</button>
+                                    <button class="btn btn--outline btn--sm">🗑️ Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Nova Lição -->
+                    <div id="modal-nova-licao" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Nova Lição</h2>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form-nova-licao">
+                                    <div class="form-group">
+                                        <label class="form-label">Título da Lição</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Categoria</label>
+                                        <select class="form-control" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="grammar">Grammar</option>
+                                            <option value="vocabulary">Vocabulary</option>
+                                            <option value="reading">Reading</option>
+                                            <option value="writing">Writing</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Vestibular</label>
+                                        <select class="form-control" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="enem">ENEM</option>
+                                            <option value="ufpr">UFPR</option>
+                                            <option value="ambos">Ambos</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Pontos</label>
+                                        <input type="number" class="form-control" min="5" max="50" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Tempo (minutos)</label>
+                                        <input type="number" class="form-control" min="5" max="60" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn--outline" id="cancelar-licao">Cancelar</button>
+                                <button class="btn btn--primary" id="salvar-licao">Salvar Lição</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Alunos -->
+                <div id="alunos-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Alunos</h1>
+                        <button class="btn btn--primary">➕ Novo Aluno</button>
+                    </div>
+                    
+                    <div class="alunos-grid">
+                        <div class="card aluno-card">
+                            <div class="card__body">
+                                <div class="aluno-info">
+                                    <h3>João Santos</h3>
+                                    <div class="aluno-stats">
+                                        <span>📊 Nível 7</span>
+                                        <span>🏆 1240 pontos</span>
+                                        <span>🔥 5 dias streak</span>
+                                        <span>🏅 8 badges</span>
+                                    </div>
+                                </div>
+                                <div class="aluno-actions">
+                                    <button class="btn btn--secondary btn--sm">Ver Progresso</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card aluno-card">
+                            <div class="card__body">
+                                <div class="aluno-info">
+                                    <h3>Maria Oliveira</h3>
+                                    <div class="aluno-stats">
+                                        <span>📊 Nível 6</span>
+                                        <span>🏆 980 pontos</span>
+                                        <span>🔥 3 dias streak</span>
+                                        <span>🏅 6 badges</span>
+                                    </div>
+                                </div>
+                                <div class="aluno-actions">
+                                    <button class="btn btn--secondary btn--sm">Ver Progresso</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card aluno-card">
+                            <div class="card__body">
+                                <div class="aluno-info">
+                                    <h3>Pedro Costa</h3>
+                                    <div class="aluno-stats">
+                                        <span>📊 Nível 8</span>
+                                        <span>🏆 1450 pontos</span>
+                                        <span>🔥 12 dias streak</span>
+                                        <span>🏅 10 badges</span>
+                                    </div>
+                                </div>
+                                <div class="aluno-actions">
+                                    <button class="btn btn--secondary btn--sm">Ver Progresso</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Assistente IA -->
+                <div id="assistente-section" class="content-section">
+                    <div class="section-header">
+                        <h1>🤖 Assistente IA</h1>
+                        <p>Gere resumos e materiais personalizados para suas aulas</p>
+                    </div>
+                    
+                    <div class="assistente-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Gerar Resumo</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Tópico</label>
+                                    <input type="text" class="form-control" placeholder="Ex: Present Perfect">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Nível</label>
+                                    <select class="form-control">
+                                        <option>Básico</option>
+                                        <option>Intermediário</option>
+                                        <option>Avançado</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn--primary btn--full-width">✨ Gerar Resumo</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>💡 Resumo Gerado</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="resumo-content">
+                                    <p><strong>Present Perfect - Nível Intermediário</strong></p>
+                                    <p>O Present Perfect é usado para expressar ações que começaram no passado e continuam no presente, ou ações passadas com relevância atual.</p>
+                                    <p><strong>Estrutura:</strong> Subject + have/has + past participle</p>
+                                    <p><strong>Exemplo:</strong> "I have studied English for 3 years."</p>
+                                    <p><strong>Dica ENEM:</strong> Atenção às palavras-chave: already, just, never, ever, since, for.</p>
+                                </div>
+                                <button class="btn btn--outline btn--sm">📋 Copiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Dashboard Aluno -->
+        <div id="aluno-dashboard" class="screen">
+            <nav class="sidebar">
+                <div class="sidebar-header">
+                    <h2>📚 EduDash</h2>
+                    <div class="user-info">
+                        <span class="status status--info">João Santos</span>
+                        <div class="user-level">Nível 7 • 1240 pts</div>
+                    </div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="#" data-section="dashboard-aluno" class="active">🏠 Dashboard</a></li>
+                    <li><a href="#" data-section="licoes-aluno">📝 Lições</a></li>
+                    <li><a href="#" data-section="progresso">📊 Progresso</a></li>
+                    <li><a href="#" data-section="badges">🏅 Badges</a></li>
+                    <li><a href="#" data-section="ranking">🏆 Ranking</a></li>
+                    <li><a href="#" data-section="assistente-aluno">🤖 Assistente IA</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <button class="btn btn--outline btn--sm" id="logout-btn-aluno">🚪 Sair</button>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <!-- Dashboard Aluno -->
+                <div id="dashboard-aluno-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Bem-vindo, João! 👋</h1>
+                        <p>Continue sua jornada de aprendizado</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Nível Atual</div>
+                            <div class="stat-trend">🎯 Próximo: Nível 8</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1240</div>
+                            <div class="stat-label">Pontos Totais</div>
+                            <div class="stat-trend">📈 +85 esta semana</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Dias Consecutivos</div>
+                            <div class="stat-trend">🔥 Streak ativo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">8/12</div>
+                            <div class="stat-label">Badges</div>
+                            <div class="stat-trend">🏅 4 para conquistar</div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>📚 Próximas Lições</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="licoes-proximas">
+                                    <div class="licao-item">
+                                        <div class="licao-icon">📝</div>
+                                        <div class="licao-details">
+                                            <h4>Present Perfect - Formation</h4>
+                                            <p>Grammar • 20 min • 15 pts</p>
+                                        </div>
+                                        <button class="btn btn--primary btn--sm">Iniciar</button>
+                                    </div>
+                                    <div class="licao-item">
+                                        <div class="licao-icon">🌍</div>
+                                        <div class="licao-details">
+                                            <h4>Environmental Issues</h4>
+                                            <p>Vocabulary • 15 min • 10 pts</p>
+                                        </div>
+                                        <button class="btn btn--primary btn--sm">Iniciar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>🏆 Badges Recentes</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="badges-recentes">
+                                    <div class="badge-item conquistada">
+                                        <span class="badge-icon">🥇</span>
+                                        <div class="badge-info">
+                                            <h4>First Step</h4>
+                                            <p>Complete sua primeira lição</p>
+                                        </div>
+                                    </div>
+                                    <div class="badge-item conquistada">
+                                        <span class="badge-icon">📚</span>
+                                        <div class="badge-info">
+                                            <h4>Grammar Master</h4>
+                                            <p>Complete 10 lições de gramática</p>
+                                        </div>
+                                    </div>
+                                    <div class="badge-item">
+                                        <span class="badge-icon">🔥</span>
+                                        <div class="badge-info">
+                                            <h4>Streak Champion</h4>
+                                            <p>7 dias consecutivos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Lições Aluno -->
+                <div id="licoes-aluno-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Suas Lições</h1>
+                        <div class="filtros">
+                            <select class="form-control">
+                                <option>Todas as categorias</option>
+                                <option>Grammar</option>
+                                <option>Vocabulary</option>
+                                <option>Reading</option>
+                                <option>Writing</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="licoes-grid">
+                        <div class="card licao-disponivel">
+                            <div class="card__body">
+                                <div class="licao-status">✅ Concluída</div>
+                                <h3>Present Perfect - Formation</h3>
+                                <div class="licao-meta">
+                                    <span class="status status--info">Grammar</span>
+                                    <span>⏱️ 20 min</span>
+                                    <span>🏆 15 pts</span>
+                                </div>
+                                <div class="licao-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span>100%</span>
+                                </div>
+                                <button class="btn btn--secondary btn--full-width">Revisar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card licao-disponivel">
+                            <div class="card__body">
+                                <div class="licao-status current">📍 Atual</div>
+                                <h3>Environmental Issues</h3>
+                                <div class="licao-meta">
+                                    <span class="status status--warning">Vocabulary</span>
+                                    <span>⏱️ 15 min</span>
+                                    <span>🏆 10 pts</span>
+                                </div>
+                                <div class="licao-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                    <span>60%</span>
+                                </div>
+                                <button class="btn btn--primary btn--full-width">Continuar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card licao-bloqueada">
+                            <div class="card__body">
+                                <div class="licao-status">🔒 Bloqueada</div>
+                                <h3>Text Analysis Techniques</h3>
+                                <div class="licao-meta">
+                                    <span class="status status--success">Reading</span>
+                                    <span>⏱️ 25 min</span>
+                                    <span>🏆 20 pts</span>
+                                </div>
+                                <p class="licao-requisito">Complete a lição anterior para desbloquear</p>
+                                <button class="btn btn--outline btn--full-width" disabled>Bloqueada</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Progresso -->
+                <div id="progresso-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Seu Progresso</h1>
+                    </div>
+                    
+                    <div class="progresso-overview">
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>📊 Progresso por Categoria</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="categorias-progress">
+                                    <div class="categoria-item">
+                                        <div class="categoria-header">
+                                            <span>📝 Grammar</span>
+                                            <span>8/10</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="categoria-item">
+                                        <div class="categoria-header">
+                                            <span>📖 Vocabulary</span>
+                                            <span>6/10</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="categoria-item">
+                                        <div class="categoria-header">
+                                            <span>📚 Reading</span>
+                                            <span>7/10</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="categoria-item">
+                                        <div class="categoria-header">
+                                            <span>✏️ Writing</span>
+                                            <span>5/10</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="categoria-item">
+                                        <div class="categoria-header">
+                                            <span>🎧 Listening</span>
+                                            <span>4/10</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 40%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Badges -->
+                <div id="badges-section" class="content-section">
+                    <div class="section-header">
+                        <h1>🏅 Suas Badges</h1>
+                        <p>8 de 12 badges conquistadas</p>
+                    </div>
+                    
+                    <div class="badges-grid">
+                        <div class="badge-card conquistada">
+                            <div class="badge-icon-large">🥇</div>
+                            <h3>First Step</h3>
+                            <p>Complete sua primeira lição</p>
+                            <div class="badge-status">✅ Conquistada</div>
+                        </div>
+                        <div class="badge-card conquistada">
+                            <div class="badge-icon-large">📚</div>
+                            <h3>Grammar Master</h3>
+                            <p>Complete 10 lições de gramática</p>
+                            <div class="badge-status">✅ Conquistada</div>
+                        </div>
+                        <div class="badge-card">
+                            <div class="badge-icon-large">🔥</div>
+                            <h3>Streak Champion</h3>
+                            <p>7 dias consecutivos</p>
+                            <div class="badge-progress">5/7 dias</div>
+                        </div>
+                        <div class="badge-card">
+                            <div class="badge-icon-large">🎓</div>
+                            <h3>ENEM Ready</h3>
+                            <p>Complete módulo ENEM</p>
+                            <div class="badge-progress">12/20 lições</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Ranking -->
+                <div id="ranking-section" class="content-section">
+                    <div class="section-header">
+                        <h1>🏆 Ranking da Turma</h1>
+                        <p>Sua posição: 2º lugar</p>
+                    </div>
+                    
+                    <div class="ranking-container">
+                        <div class="card">
+                            <div class="card__body">
+                                <div class="ranking-list">
+                                    <div class="ranking-item destaque">
+                                        <span class="ranking-position">🥇</span>
+                                        <span class="ranking-name">Pedro Costa</span>
+                                        <span class="ranking-level">Nível 8</span>
+                                        <span class="ranking-points">1450 pts</span>
+                                    </div>
+                                    <div class="ranking-item atual">
+                                        <span class="ranking-position">🥈</span>
+                                        <span class="ranking-name">Você (João Santos)</span>
+                                        <span class="ranking-level">Nível 7</span>
+                                        <span class="ranking-points">1240 pts</span>
+                                    </div>
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">🥉</span>
+                                        <span class="ranking-name">Maria Oliveira</span>
+                                        <span class="ranking-level">Nível 6</span>
+                                        <span class="ranking-points">980 pts</span>
+                                    </div>
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">4º</span>
+                                        <span class="ranking-name">Ana Paula</span>
+                                        <span class="ranking-level">Nível 6</span>
+                                        <span class="ranking-points">875 pts</span>
+                                    </div>
+                                    <div class="ranking-item">
+                                        <span class="ranking-position">5º</span>
+                                        <span class="ranking-name">Carlos Silva</span>
+                                        <span class="ranking-level">Nível 5</span>
+                                        <span class="ranking-points">720 pts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Assistente Aluno -->
+                <div id="assistente-aluno-section" class="content-section">
+                    <div class="section-header">
+                        <h1>🤖 Assistente IA</h1>
+                        <p>Obtenha ajuda personalizada para seus estudos</p>
+                    </div>
+                    
+                    <div class="assistente-aluno-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>❓ Fazer Pergunta</h3>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" placeholder="Ex: Como usar o Present Perfect com 'already'?"></textarea>
+                                </div>
+                                <button class="btn btn--primary btn--full-width">🔍 Perguntar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__header">
+                                <h3>💡 Resposta do Assistente</h3>
+                            </div>
+                            <div class="card__body">
+                                <div class="assistente-resposta">
+                                    <p><strong>Present Perfect com "already":</strong></p>
+                                    <p>A palavra "already" é usada no Present Perfect para indicar que algo já aconteceu antes do momento esperado.</p>
+                                    <p><strong>Estrutura:</strong> Subject + have/has + already + past participle</p>
+                                    <p><strong>Exemplo:</strong> "I have already finished my homework."</p>
+                                    <p><strong>Posição:</strong> "Already" geralmente vem antes do particípio passado.</p>
+                                </div>
+                                <div class="assistente-actions">
+                                    <button class="btn btn--outline btn--sm">👍 Útil</button>
+                                    <button class="btn btn--outline btn--sm">👎 Não útil</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

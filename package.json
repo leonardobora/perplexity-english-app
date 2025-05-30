@@ -1,0 +1,50 @@
+{
+  "name": "edudash-english-learning",
+  "version": "1.0.0",
+  "description": "Educational dashboard for English learning focused on Brazilian college entrance exams (ENEM and UFPR)",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "lint:html": "htmlhint index.html",
+    "lint:css": "stylelint style.css",
+    "lint:js": "eslint app.js",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "build": "mkdir -p dist && cp index.html app.js style.css CLAUDE.md dist/",
+    "minify:css": "cleancss -o dist/style.min.css style.css",
+    "minify:js": "uglifyjs app.js -o dist/app.min.js -c -m",
+    "optimize": "npm run build && npm run minify:css && npm run minify:js"
+  },
+  "keywords": [
+    "education",
+    "english-learning",
+    "dashboard",
+    "gamification",
+    "enem",
+    "ufpr",
+    "brazilian-education",
+    "language-learning"
+  ],
+  "author": "Educational Dashboard Team",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "clean-css-cli": "^5.6.2",
+    "uglify-js": "^3.17.4",
+    "serve": "^14.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/perplexity_english_app.git"
+  },
+  "homepage": "https://your-username.github.io/perplexity_english_app/",
+  "bugs": {
+    "url": "https://github.com/your-username/perplexity_english_app/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
